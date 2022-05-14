@@ -1,7 +1,7 @@
 {
   "name": "sensores",
   "version": "1.0.0",
-  "description": "A proyect for a college asigment",
+  "description": "A proyect for a college assigment",
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon dist/index.js",
