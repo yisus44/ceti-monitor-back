@@ -11,6 +11,7 @@ interface IAula {
   dimensiones: IDimension[];
   sensores: ISensor[];
   cameras: ICamera[];
+  _id?: String;
 }
 const AulaSchema = new Schema<IAula>({
   nombre: { type: String, required: true },
@@ -18,6 +19,7 @@ const AulaSchema = new Schema<IAula>({
   dimensiones: [{ type: DimensionSchema, required: true }],
   sensores: [{ type: SensorSchema, required: true }],
   cameras: [{ type: CameraSchema, required: true }],
+  _id: { type: String, required: false },
 });
 const Aula = model<IAula>("Aula", AulaSchema);
 export { Aula, IAula, AulaSchema };
