@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 import { CameraSchema, ICamera } from "./Camera";
 import { DimensionSchema, IDimension } from "./Dimension";
 import { ISensor, SensorSchema } from "./Sensor";
@@ -19,7 +19,10 @@ const AulaSchema = new Schema<IAula>({
   dimensiones: [{ type: DimensionSchema, required: true }],
   sensores: [{ type: SensorSchema, required: true }],
   cameras: [{ type: CameraSchema, required: true }],
-  _id: { type: String, required: false },
+  _id: {
+    type: mongoose.Types.ObjectId,
+    default: new mongoose.Types.ObjectId(),
+  },
 });
 const Aula = model<IAula>("Aula", AulaSchema);
 export { Aula, IAula, AulaSchema };

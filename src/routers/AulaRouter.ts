@@ -1,8 +1,7 @@
 import { Router, Response, Request } from "express";
 import ResponseDTO from "../DTOS/ResponseDTO";
-import { Aula, IAula } from "../models/Aula";
+import { IAula } from "../models/Aula";
 import { Edificio } from "../models/Edificio";
-import { IUser, User } from "../models/User";
 
 const AulaRouter = Router();
 
@@ -14,7 +13,7 @@ async function getAulaById(id: string): Promise<IAula> {
     edificios.forEach((edificio) => {
       edificio.redes.forEach((red) => {
         red.aulas.forEach((aula) => {
-          if (aula._id === id) {
+          if (aula._id?.toString() === id.toString()) {
             aulas.push(aula);
           }
         });
