@@ -27,7 +27,7 @@ async function getAulaById(id: string): Promise<IAula> {
 }
 
 AulaRouter.get(
-  "/aula/:id",
+  "/classroom/:id",
   async function (req: Request<any, IAula>, res: Response) {
     try {
       const id = req.params.id;

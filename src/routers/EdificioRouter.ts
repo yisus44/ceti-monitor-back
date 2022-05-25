@@ -5,7 +5,7 @@ import { Edificio, IEdificio } from "../models/Edificio";
 const EdificioRouter = Router();
 
 EdificioRouter.post(
-  "/edificio",
+  "/building",
   async function (req: Request<{}, IEdificio>, res: Response) {
     try {
       const edificio = new Edificio({
@@ -20,7 +20,7 @@ EdificioRouter.post(
   }
 );
 
-EdificioRouter.get("/edificio", async function (req: Request, res: Response) {
+EdificioRouter.get("/building", async function (req: Request, res: Response) {
   try {
     const edificio = await Edificio.find();
     return res.json(new ResponseDTO<typeof edificio>(edificio, null, 200));
@@ -30,7 +30,7 @@ EdificioRouter.get("/edificio", async function (req: Request, res: Response) {
 });
 
 EdificioRouter.get(
-  "/edificio/:id",
+  "/building/:id",
   async function (req: Request<any, IEdificio>, res: Response) {
     try {
       const id = req.params.id;
