@@ -1,8 +1,8 @@
 import express from "express";
 import helmet from "helmet";
-import AulaRouter from "./routers/AulaRouter";
+import AulaRouter from "./routers/ClassroomRouter";
 import CameraRouter from "./routers/CameraRouter";
-import EdificioRouter from "./routers/EdificioRouter";
+import EdificioRouter from "./routers/BuildingRouter";
 import SensorRouter from "./routers/SensorRouter";
 import UserRouter from "./routers/UserRouter";
 

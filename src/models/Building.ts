@@ -2,18 +2,22 @@ import { IMedicion, MedicionSchema } from "./Measurement";
 import { Schema, model } from "mongoose";
 import { IRed, RedSchema } from "./Network";
 
-interface IEdificio {
+interface IBuilding {
   nombre: string;
   redes: IRed[];
 }
 
-const EdificioSchema = new Schema<IEdificio>({
+const BuildingSchema = new Schema<IBuilding>({
   nombre: { type: String, required: true },
   redes: [{ type: RedSchema, required: true }],
 });
 
-const Edificio = model<IEdificio>("Edificio", EdificioSchema);
-export { Edificio, IEdificio, EdificioSchema };
+const Building = model<IBuilding>("Edificio", BuildingSchema);
+export {
+  Building as Edificio,
+  IBuilding as IEdificio,
+  BuildingSchema as EdificioSchema,
+};
 
 // {
 //     "edificios": [
