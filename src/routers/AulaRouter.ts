@@ -1,7 +1,7 @@
 import { Router, Response, Request } from "express";
 import ResponseDTO from "../DTOS/ResponseDTO";
-import { IAula } from "../models/Aula";
-import { Edificio } from "../models/Edificio";
+import { IAula } from "../models/Classroom";
+import { Edificio } from "../models/Building";
 
 const AulaRouter = Router();
 

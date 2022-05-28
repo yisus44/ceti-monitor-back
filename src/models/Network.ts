@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { AulaSchema, IAula } from "./Aula";
+import { AulaSchema, IAula } from "./Classroom";
 
 interface IRed {
   nombre: string;

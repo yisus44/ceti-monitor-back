@@ -1,4 +1,4 @@
-import { IMedicion, MedicionSchema } from "./Medicion";
+import { IMedicion, MedicionSchema } from "./Measurement";
 import { Schema, model } from "mongoose";
 import { IMeta, MetaSchema } from "./Meta";
 

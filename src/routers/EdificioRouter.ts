@@ -1,6 +1,6 @@
 import { Router, Response, Request } from "express";
 import ResponseDTO from "../DTOS/ResponseDTO";
-import { Edificio, IEdificio } from "../models/Edificio";
+import { Edificio, IEdificio } from "../models/Building";
 
 const EdificioRouter = Router();
 
