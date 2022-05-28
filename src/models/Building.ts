@@ -1,6 +1,6 @@
-import { IMedicion, MedicionSchema } from "./Medicion";
+import { IMedicion, MedicionSchema } from "./Measurement";
 import { Schema, model } from "mongoose";
-import { IRed, RedSchema } from "./Red";
+import { IRed, RedSchema } from "./Network";
 
 interface IEdificio {
   nombre: string;

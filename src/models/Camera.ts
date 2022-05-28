@@ -1,4 +1,4 @@
-import { IPersona, PersonaSchema } from "./Persona";
+import { IPersona, PersonaSchema } from "./Person";
 import { Schema, model } from "mongoose";
 
 interface ICamera {
