@@ -1,4 +1,3 @@
-import { IMedicion, MedicionSchema } from "./Measurement";
 import { Schema, model } from "mongoose";
 import { IRed, RedSchema } from "./Network";
 

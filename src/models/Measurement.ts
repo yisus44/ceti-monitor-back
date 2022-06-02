@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 interface IMedicion {
   valor: Number;
-  fechaHora: Date;
+  fechaHora?: Date;
 }
 const MedicionSchema = new Schema<IMedicion>({
   valor: { type: Number, required: true },
