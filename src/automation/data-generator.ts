@@ -1,5 +1,5 @@
 import cron from "node-cron";
-import { Edificio } from "./models/Building";
+import { Edificio } from "../models/Building";
 
 async function generateFakeData() {
   const edificios = await Edificio.find({});
@@ -10,7 +10,7 @@ async function generateFakeData() {
       red.aulas.forEach((aula) => {
         aula.sensores.forEach((sensor) => {
           sensor.mediciones.push({
-            valor: 3,
+            valor: generateFakeMeasurement(),
           });
           console.log(sensor.mediciones);
         });
@@ -25,12 +25,16 @@ async function generateFakeData() {
     edf.save();
   });
 }
-generateFakeData();
+
+function generateFakeMeasurement(): number {
+  return Math.floor(Math.random() * 10) + 1;
+}
 
 cron.schedule("* * * * *", () => {
   console.log("running a task every minute");
 });
 
 cron.schedule("*/5 * * * *", () => {
-  console.log("running a task every 5 minutes");
+  console.log("Generating new data");
+  generateFakeData();
 });
