@@ -1,5 +1,5 @@
 import { Router, Response, Request } from "express";
-import ResponseDTO from "../DTOS/ResponseDTO";
+import ResponseDTO from "../common/DTOS/ResponseDTO";
 import { IAula } from "../models/Classroom";
 import { Edificio } from "../models/Building";
 
