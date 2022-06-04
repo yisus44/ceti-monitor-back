@@ -4,7 +4,6 @@ import { Edificio } from "../models/Building";
 
 async function generateFakeData() {
   const edificios = await Edificio.find({});
-  await Edificio.deleteMany({});
 
   edificios.forEach((edificio) => {
     edificio.redes.forEach((red) => {
@@ -33,12 +32,9 @@ async function generateFakeData() {
       });
     });
   });
-  edificios.forEach((edificio) => {
-    const nuevoEdificio = new Edificio({
-      nombre: edificio.nombre,
-      redes: edificio.redes,
-    });
-    nuevoEdificio.save();
+
+  edificios.forEach(async (edificio) => {
+    await Edificio.updateOne({ nombre: edificio.nombre }, edificio);
   });
 }
 
@@ -47,7 +43,6 @@ function generateFakeMeasurement(min: number, max: number): number {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 cron.schedule("*/5 * * * *", () => {
   console.log("Generating new data");
   generateFakeData();
