@@ -1,10 +1,8 @@
-import cron from "node-cron";
-import { SensorEnum } from "../common/SensorType";
-import { Edificio } from "../models/Building";
+import { SensorEnum } from "../../common/SensorType";
+import { IEdificio } from "../../models/Building";
+import { generateFakeMeasurement } from "./generate-fake-measurement";
 
-async function generateFakeData() {
-  const edificios = await Edificio.find({});
-
+export function updateBuilding(edificios: IEdificio[]) {
   edificios.forEach((edificio) => {
     edificio.redes.forEach((red) => {
       red.aulas.forEach((aula) => {
@@ -32,18 +30,5 @@ async function generateFakeData() {
       });
     });
   });
-
-  edificios.forEach(async (edificio) => {
-    await Edificio.updateOne({ nombre: edificio.nombre }, edificio);
-  });
+  return edificios;
 }
-
-function generateFakeMeasurement(min: number, max: number): number {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-cron.schedule("*/5 * * * *", () => {
-  console.log("Generating new data");
-  generateFakeData();
-});
