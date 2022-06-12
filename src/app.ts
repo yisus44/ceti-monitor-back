@@ -6,7 +6,11 @@ import EdificioRouter from "./routers/BuildingRouter";
 import SensorRouter from "./routers/SensorRouter";
 import UserRouter from "./routers/UserRouter";
 
+const cors = require("cors");
+
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
