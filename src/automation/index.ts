@@ -1,4 +1,4 @@
 import cron from "node-cron";
-import { cronStartGenerateFakeData } from "./building-automation/data-generator";
+import { cronStartGenerateFakeData } from "./meditions-automation/data-generator";
 cronStartGenerateFakeData();
-cron.schedule("*/5 * * * *", cronStartGenerateFakeData);
+cron.schedule("*/1 * * * *", cronStartGenerateFakeData);

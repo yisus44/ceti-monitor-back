@@ -30,7 +30,7 @@ AulaRouter.get(
   async function (req: Request<any, IAula>, res: Response) {
     try {
       const id = req.params.id;
-      const aula = getAulaById(id);
+      const aula = await getAulaById(id);
       return res.json(new ResponseDTO<typeof aula>(aula, null, 200));
     } catch (error: any) {
       return res.json(new ResponseDTO<null>(null, error.message, 400));
