@@ -5,14 +5,14 @@ interface ICamera {
   nsc: string;
   nombre: string;
   modelo: string;
-  personas: IPersona[];
+  personas?: IPersona[];
 }
 
 const CameraSchema = new Schema<ICamera>({
   nsc: { type: String, required: true, unique: true },
   nombre: { type: String, required: true, unique: true },
   modelo: { type: String, required: true, unique: true },
-  personas: [{ type: PersonaSchema, required: true }],
+  personas: [{ type: PersonaSchema }],
 });
 
 const Camera = model<ICamera>("Camera", CameraSchema);

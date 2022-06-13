@@ -8,6 +8,7 @@ import { ISensor, SensorSchema } from "./Sensor";
 interface IAula {
   nombre: String;
   tipoAula: String;
+  detalle?: string;
   dimensiones: IDimension[];
   sensores: ISensor[];
   cameras: ICamera[];
@@ -19,6 +20,7 @@ const AulaSchema = new Schema<IAula>({
   dimensiones: [{ type: DimensionSchema, required: true }],
   sensores: [{ type: SensorSchema, required: true }],
   cameras: [{ type: CameraSchema, required: true }],
+  detalle: { type: String },
   _id: {
     type: mongoose.Types.ObjectId,
     default: new mongoose.Types.ObjectId(),

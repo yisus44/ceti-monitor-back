@@ -11,6 +11,7 @@ EdificioRouter.post(
       const edificio = new Edificio({
         nombre: req.body.nombre,
         redes: req.body.redes,
+        imgUrl: req.body.imgUrl,
       });
       await edificio.save();
       return res.json(new ResponseDTO<IEdificio>(edificio, null, 201));
