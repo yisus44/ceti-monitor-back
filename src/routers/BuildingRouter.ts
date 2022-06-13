@@ -1,6 +1,8 @@
 import { Router, Response, Request } from "express";
 import ResponseDTO from "../common/DTOS/ResponseDTO";
 import { Edificio, IEdificio } from "../models/Building";
+import { Camera } from "../models/Camera";
+import { Aula } from "../models/Classroom";
 
 const EdificioRouter = Router();
 
@@ -14,6 +16,23 @@ EdificioRouter.post(
         imgUrl: req.body.imgUrl,
       });
       await edificio.save();
+
+      edificio.redes.forEach((red) => {
+        red.aulas.forEach((aula) => {
+          aula.cameras.forEach(async (camera) => {
+            const newCamera = new Camera({
+              nsc: camera.nsc,
+              nombre: camera.nombre,
+              modelo: camera.modelo,
+              personas: [],
+            });
+            console.log(newCamera);
+            await newCamera.save();
+            console.log("camera saved");
+          });
+        });
+      });
+
       return res.json(new ResponseDTO<IEdificio>(edificio, null, 201));
     } catch (error: any) {
       return res.json(new ResponseDTO<null>(null, error.message, 400));
