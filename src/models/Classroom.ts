@@ -21,10 +21,10 @@ const AulaSchema = new Schema<IAula>({
   sensores: [{ type: SensorSchema, required: true }],
   cameras: [{ type: CameraSchema, required: true }],
   detalle: { type: String },
-  _id: {
-    type: mongoose.Types.ObjectId,
-    default: new mongoose.Types.ObjectId(),
-  },
+  //_id: {
+  ////type: mongoose.Types.ObjectId,
+  ////default: new mongoose.Types.ObjectId(),
+  //},
 });
 const Aula = model<IAula>("Aula", AulaSchema);
 export { Aula, IAula, AulaSchema };
