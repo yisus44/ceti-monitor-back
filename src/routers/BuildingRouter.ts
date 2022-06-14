@@ -3,6 +3,7 @@ import ResponseDTO from "../common/DTOS/ResponseDTO";
 import { Edificio, IEdificio } from "../models/Building";
 import { Camera } from "../models/Camera";
 import { Aula } from "../models/Classroom";
+import { Sensor } from "../models/Sensor";
 
 const EdificioRouter = Router();
 
@@ -15,6 +16,8 @@ EdificioRouter.post(
         redes: req.body.redes,
         imgUrl: req.body.imgUrl,
       });
+
+      const sensores = [];
       await edificio.save();
 
       edificio.redes.forEach((red) => {
@@ -29,6 +32,17 @@ EdificioRouter.post(
             console.log(newCamera);
             await newCamera.save();
             console.log("camera saved");
+          });
+
+          aula.sensores.forEach(async (sensor) => {
+            const newSensor = new Sensor({
+              nsc: sensor.nsc,
+              mediciones: [],
+              tipo: sensor.tipo,
+              meta: sensor.meta,
+            });
+            console.log(sensor.nsc);
+            newSensor.save();
           });
         });
       });

@@ -9,10 +9,18 @@ export async function cronGenerateFakeData() {
     console.log("Error getting buildings");
     return;
   }
-  console.log(sensors);
+
   const updatedSensors = updateSensor(sensors);
 
   updatedSensors.forEach(async (sensor) => {
-    await Sensor.updateOne({ nsc: sensor.nsc }, sensor);
+    try {
+      await Sensor.updateOne(
+        { nsc: sensor.nsc },
+        { mediciones: sensor.mediciones }
+      );
+    } catch (ex) {
+      console.log(ex);
+      console.log("ya no truena");
+    }
   });
 }

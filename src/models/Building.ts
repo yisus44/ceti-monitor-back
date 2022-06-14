@@ -4,6 +4,7 @@ import { IRed, RedSchema } from "./Network";
 interface IBuilding {
   nombre: string;
   imgUrl?: string;
+  detalle?: string;
   redes: IRed[];
 }
 
@@ -11,6 +12,7 @@ const BuildingSchema = new Schema<IBuilding>({
   nombre: { type: String, required: true },
   redes: [{ type: RedSchema, required: true }],
   imgUrl: { type: String, default: null },
+  detalle: { type: String },
 });
 
 const Building = model<IBuilding>("Edificio", BuildingSchema);
