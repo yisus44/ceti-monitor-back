@@ -10,8 +10,8 @@ interface ICamera {
 
 const CameraSchema = new Schema<ICamera>({
   nsc: { type: String, required: true, unique: true },
-  nombre: { type: String, required: true, unique: true },
-  modelo: { type: String, required: true, unique: true },
+  nombre: { type: String, required: true },
+  modelo: { type: String, required: true },
   personas: [{ type: PersonaSchema }],
 });
 
