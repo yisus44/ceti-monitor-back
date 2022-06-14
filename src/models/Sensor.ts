@@ -7,6 +7,7 @@ interface ISensor {
   tipo: string;
   mediciones?: IMedicion[];
   meta: IMeta;
+  ultimaMedicion?: IMedicion;
 }
 
 const SensorSchema = new Schema<ISensor>({
@@ -14,6 +15,7 @@ const SensorSchema = new Schema<ISensor>({
   mediciones: [{ type: MedicionSchema, default: [] }],
   tipo: { type: String, required: true },
   meta: { type: MetaSchema, required: true },
+  ultimaMedicion: { type: MedicionSchema },
 });
 
 const Sensor = model<ISensor>("Sensor", SensorSchema);
