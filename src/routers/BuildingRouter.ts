@@ -16,8 +16,6 @@ EdificioRouter.post(
         redes: req.body.redes,
         imgUrl: req.body.imgUrl,
       });
-
-      const sensores = [];
       await edificio.save();
 
       edificio.redes.forEach((red) => {

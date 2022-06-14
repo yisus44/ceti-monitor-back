@@ -24,7 +24,7 @@ export function updateSensor(sensores: ISensor[]) {
     }
 
     if (sensor.mediciones) {
-      const meditions = new Medicion({ valor: valor });
+      const meditions = new Medicion({ valor: valor, fechaHora: Date.now() });
       sensor.mediciones.push(meditions);
     }
   });

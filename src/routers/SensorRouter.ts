@@ -1,5 +1,6 @@
 import { Router, Response, Request } from "express";
 import ResponseDTO from "../common/DTOS/ResponseDTO";
+import { IMedicion } from "../models/Measurement";
 import { Sensor, ISensor } from "../models/Sensor";
 
 const SensorRouter = Router();
@@ -14,6 +15,7 @@ SensorRouter.post(
         tipo: req.body.tipo,
         meta: req.body.meta,
       });
+      setLastMedition(sensor as ISensor);
       await sensor.save();
       return res.json(new ResponseDTO<ISensor>(sensor, null, 201));
     } catch (error: any) {
@@ -26,18 +28,7 @@ SensorRouter.get("/sensor", async function (req: Request, res: Response) {
   try {
     const sensors = await Sensor.find();
     sensors.forEach((sensor) => {
-      const sortedMeditions = sensor?.mediciones?.sort(
-        //@ts-ignore
-        (objA, objB) => objA?.fechaHora?.getTime() - objB.fechaHora.getTime()
-      );
-
-      if (sortedMeditions) {
-        //@ts-ignore
-        sensor?.ultimaMedicion = sortedMeditions[0];
-      } else {
-        //@ts-ignore
-        sensor?.ultimaMedicion = [];
-      }
+      setLastMedition(sensor as ISensor);
     });
     return res.json(new ResponseDTO<typeof sensors>(sensors, null, 200));
   } catch (error: any) {
@@ -52,18 +43,7 @@ SensorRouter.get(
       const id = req.params.id;
       if (!id) throw new Error("Provide a id");
       const sensor = await Sensor.findById(id);
-      const sortedMeditions = sensor?.mediciones?.sort(
-        //@ts-ignore
-        (objA, objB) => objA?.fechaHora?.getTime() - objB.fechaHora.getTime()
-      );
-
-      if (sortedMeditions) {
-        //@ts-ignore
-        sensor?.ultimaMedicion = sortedMeditions[0];
-      } else {
-        //@ts-ignore
-        sensor?.ultimaMedicion = [];
-      }
+      setLastMedition(sensor as ISensor);
       console.log(sensor);
       return res.json(new ResponseDTO<typeof sensor>(sensor, null, 200));
     } catch (error: any) {
@@ -71,5 +51,15 @@ SensorRouter.get(
     }
   }
 );
+async function setLastMedition(sensor: ISensor) {
+  const lastMeditions = sensor?.mediciones?.at(-1);
+  if (lastMeditions) {
+    //@ts-ignore
+    sensor?.ultimaMedicion = lastMeditions;
+  } else {
+    //@ts-ignore
+    sensor?.ultimaMedicion = [];
+  }
+}
 
 export default SensorRouter;
