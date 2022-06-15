@@ -15,6 +15,7 @@ EdificioRouter.post(
         nombre: req.body.nombre,
         redes: req.body.redes,
         imgUrl: req.body.imgUrl,
+        detalle: req.body.detalle,
       });
       await edificio.save();
 

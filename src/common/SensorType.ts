@@ -1,5 +1,6 @@
 export enum SensorEnum {
-  AGUA = "AGUA",
+  OXIGENO = "OXIGENO",
   HUMEDAD = "HUMEDAD",
   TEMPERATURA = "TEMPERATURA",
+  AIRE = "AIRE",
 }

@@ -8,13 +8,15 @@ export function updateSensor(sensores: ISensor[]) {
     let valor: number;
 
     switch (sensor.tipo) {
-      case SensorEnum.AGUA:
+      case SensorEnum.AIRE:
         valor = generateFakeMeasurement(10, 30);
         break;
       case SensorEnum.TEMPERATURA:
         valor = generateFakeMeasurement(20, 40);
         break;
-
+      case SensorEnum.OXIGENO:
+        valor = generateFakeMeasurement(20, 40);
+        break;
       case SensorEnum.HUMEDAD:
         valor = generateFakeMeasurement(10, 30);
         break;
